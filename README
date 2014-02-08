@@ -1,4 +1,204 @@
 TORNEO
+======
 
-Progetto Java che simula un torneo di calcetto.
-Crea giocatori e squadre prendendo i dati da file e le stampa in ordine.
+L'obiettivo e' scrivere un programma  Torneo che legge da standard input 
+l'elenco dei  giocatori iscritti a un torneo e lo stampa in formati diversi.
+
+Una linea di input ha la forma
+
+nome,cognome,altezza,squadra,ruolo
+
+dove:
+
+-  nome e cognome sono il nome e cognome del giocatore,
+-  altezza e' un numero double corrispondente all'altezza del giocatore,
+-  squadra e' il nome della squadra del giocatore    
+-  ruolo e' una delle lettere T o R a seconda che il giocatore sia un titolare
+   o una riserva. 
+
+
+Ad esempio, la linea di input
+
+Carlo Alberto,Ferrari,1.75,falchi,R
+
+rappresenta il giocatore Carlo Alberto Ferrari, alto 1.75 metri, che e' una
+riserva della squadra dei falchi.
+
+Si noti che i campi su una linea di input sono separati solamente da una
+virgola. Si assume  che un giocatore appartenga a una sola squadra e che 
+un giocatore sia inserito una sola volta.
+
+Non devono essere posti vincoli sul numero delle squadre e sul numero dei
+giocatori di una squadra.
+
+
+Il programma  dopo aver letto l'input stampa:
+
+A) L'elenco dei giocatori divisi per squadre.
+   Le squadre vanno stampate in ordine alfabetico.
+   I giocatori di una squadra vanno stampati in ordine decrescente di altezza;
+   a parita' di altezza, i giocatori vanno stampati in ordine alfabetico
+   (cognome, nome).
+
+B) L'elenco di tutti i giocatori, ordinati come nel punto A 
+   (ossia, ordine decrescente di altezza, ordine alfabetico per giocatori
+   della stessa altezza).     
+
+C) L'elenco di tutti i titolari, ordinati come nel punto A.
+
+D) L'elenco di tutte le riserve, ordinate come nel punto A.	
+
+Per il formato della stampa  vedere l'esempio sotto.
+
+
+Struttura del programma
+-----------------------
+
+Il programma deve essere strutturato su piu' classi, come specificato di
+seguito.
+
+Si noti che:
+
+1) nella descrizione dei metodi la segnatura a volte e' scritta in forma
+incompleta;
+
+2) i campi utilizzati nelle classi devono avere visibilita' private;
+
+3) una classe puo' contenere altri metodi  oltre a quelli  esplicitamente
+nominati.
+
+
+
+* Giocatore
+
+Classe astratta che rappresenta un giocatore di cui vengono specificati 
+nome, cognome altezza e squadra d'appartenenza (classe definita sotto).
+
+Nel costruttore la squadra del giocatore va specificata mediante un parametro 
+di tipo Squadra.
+
+Si noti che per poter compilare la classe occorre definire una classe Squadra
+(anche vuota).
+
+La classe Giocatore deve implementare l'interfaccia
+
+   Comparable<Giocatore>
+
+dove l'ordinamento fra giocatori e' quello descritto nel punto A).
+
+
+* Titolare
+
+Sottoclasse concreta di Giocatore che rappresenta un giocatore titolare
+di cui vengono specificati nome, cognome, altezza e squadra.
+
+
+* Riserva
+
+Sottoclasse concreta di Giocatore che rappresenta un giocatore riserva
+di cui vengono specificati nome, cognome, altezza e squadra.
+
+* Squadra
+
+La classe Squadra rappresenta una squadra  definita da un nome
+a dall'elenco dei suoi giocatori.  
+
+Ha un costruttore che costruisce una squadra senza giocatori
+di cui viene specificato il nome.
+
+Deve  possedere i metodi:
+
+-  add (Giocatore g)
+
+Aggiunge alla squadra il giocatore g.
+
+- sort()
+
+Ordina i giocatori della squadra secondo l'ordine specificato nel punto A).
+
+La classe deve inoltre implementare l'interfaccia Iterable<Giocatore>.
+
+
+Esempio di esecuzione
+---------------------
+
+Supponiamo che le linee sullo standard input siano:
+
+Carlo Alberto,Ferrari,1.75,falchi,R
+Giovanni,Milanesi,1.72,condor,T
+Guido,Abate,1.72,condor,R
+Mario,Rossi,1.96,lupi,T
+Giuseppe Mario,Delle Querce,1.83,condor,T
+Roberto,Di Verona,1.92,falchi,T
+Alberto,Ferraroni,1.75,lupi,R
+Luca,Vincesempre,1.92,aquile,T
+Paolo,Verdi,1.75,aquile,T
+Federico,Orsini,1.75,aquile,R
+Franco,Brambilla,1.98,lupi,T
+Paolo,Falchi,1.82,falchi,T
+Alberto,Bianchi,1.75,aquile,T
+Antonio Mario,Ferrarini,1.75,lupi,R
+
+
+Il comando
+
+  java Torneo
+
+deve stampare:
+
+
+SQUADRA AQUILE:
+Luca Vincesempre 1.92 titolare
+Alberto Bianchi 1.75 titolare
+Federico Orsini 1.75 riserva
+Paolo Verdi 1.75 titolare
+
+SQUADRA CONDOR:
+Giuseppe Mario Delle Querce 1.83 titolare
+Guido Abate 1.72 riserva
+Giovanni Milanesi 1.72 titolare
+
+SQUADRA FALCHI:
+Roberto Di Verona 1.92 titolare
+Paolo Falchi 1.82 titolare
+Carlo Alberto Ferrari 1.75 riserva
+
+SQUADRA LUPI:
+Franco Brambilla 1.98 titolare
+Mario Rossi 1.96 titolare
+Antonio Mario Ferrarini 1.75 riserva
+Alberto Ferraroni 1.75 riserva
+
+GIOCATORI:
+Franco Brambilla 1.98 lupi titolare
+Mario Rossi 1.96 lupi titolare
+Roberto Di Verona 1.92 falchi titolare
+Luca Vincesempre 1.92 aquile titolare
+Giuseppe Mario Delle Querce 1.83 condor titolare
+Paolo Falchi 1.82 falchi titolare
+Alberto Bianchi 1.75 aquile titolare
+Carlo Alberto Ferrari 1.75 falchi riserva
+Antonio Mario Ferrarini 1.75 lupi riserva
+Alberto Ferraroni 1.75 lupi riserva
+Federico Orsini 1.75 aquile riserva
+Paolo Verdi 1.75 aquile titolare
+Guido Abate 1.72 condor riserva
+Giovanni Milanesi 1.72 condor titolare
+
+TITOLARI:
+Franco Brambilla 1.98 lupi
+Mario Rossi 1.96 lupi
+Roberto Di Verona 1.92 falchi
+Luca Vincesempre 1.92 aquile
+Giuseppe Mario Delle Querce 1.83 condor
+Paolo Falchi 1.82 falchi
+Alberto Bianchi 1.75 aquile
+Paolo Verdi 1.75 aquile
+Giovanni Milanesi 1.72 condor
+
+RISERVE:
+Carlo Alberto Ferrari 1.75 falchi
+Antonio Mario Ferrarini 1.75 lupi
+Alberto Ferraroni 1.75 lupi
+Federico Orsini 1.75 aquile
+Guido Abate 1.72 condor
