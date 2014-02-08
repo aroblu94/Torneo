@@ -13,9 +13,12 @@ public abstract class Giocatore implements Comparable<Giocatore>
 		cognome = c;
 		altezza = h;
 		squadra = s;
+		squadra.add(this);
 	}
 
 	//METODI
+	
+	//Get
 	public String getNome()
 	{
 		return nome;
@@ -36,27 +39,37 @@ public abstract class Giocatore implements Comparable<Giocatore>
 		return altezza;
 	}
 
+	//toString
 	public String toString()
 	{
 		return (nome+", "+cognome+", "+altezza+"m, "+squadra);
 	}
 
-	public int compareTo(Giocatore g)
+
+	//compareTo
+    public int compareTo(Giocatore g) 
 	{
-		if(this.altezza == g.altezza) //this ha la stessa altezza di g
+		if (this.altezza > g.altezza) // Confronto le altezze
 		{
-			if (this.cognome != g.cognome) //ergo ordine alfabetico
-				return (this.cognome.compareTo(g.cognome));
-			else return (this.nome.compareTo(g.nome));
-		}
-		else
-		{
-			if (this.altezza > g.altezza)
-				return 1; // => this e' piu' alto di g
-			else return -1; // => this e' piu' basso di g
-		}
-		
-	}
+	    	return 1;
+		} 
+		else 
+			if (this.altezza < g.altezza) 
+			{
+	    		return -1;
+			} 
+			else 	// Se hanno altezza uguale confronto il cognome
+				if (this.cognome.compareTo(g.cognome) > 0) 
+				{
+	    			return 1;
+				} 
+				else 
+					if (this.cognome.compareTo(g.cognome) < 0) 
+					{
+	    				return -1;
+					}
+				return 0;	// Se hanno anche lo stesso cognome si attaccano
+    }
 
 
 }

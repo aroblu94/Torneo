@@ -1,0 +1,112 @@
+import java.util.*;
+
+public class Torneo 
+{
+	public static void main(String[] args) throws Exception
+	{
+		Torneo t = new Torneo;
+		File f = new File("giocatori.txt"); // Leggo da file
+		Scanner s = new Scanner(f);
+		String g = s.next();
+		String n="";
+		String c="";
+		String sq="";
+		String ruolo="";
+		double h=0;
+		Titolare tit;
+		Riserva ris;
+		Squadra squadra=null;
+		boolean fine=false;
+		boolean controllo;
+		//Vector<Squadra> squadre = new Vector<Squadra>();
+		while(!fine) //N.B. con un semplice do while o for "mangia" l'ultima riga del file di testo, con questo rude metodo no
+		{
+			Scanner tokenizer = new Scanner(g);
+			tokenizer.useDelimiter(",");
+			n=tokenizer.next();
+			System.out.println("DEBUG: nome = "+n);
+			c=tokenizer.next();
+			System.out.println("DEBUG: cognome = "+c);
+			h=Double.parseDouble(tokenizer.next());
+			System.out.println("DEBUG: altezza = "+h);
+			sq=tokenizer.next();
+			System.out.println("DEBUG: squadra = "+sq);
+			ruolo=tokenizer.next();
+			System.out.println("DEBUG: ruolo = "+ruolo);
+			squadra = new Squadra(sq); //crea Squadra
+			Giocatore g = null;
+			if (ruolo.equals("T")) //crea Titolare o Riserva
+			{
+				g = new Titolare(n, c, h, squadra);
+				System.out.println("DEBUG: giocatore creato = "+g);
+				squadra.add(tit);
+			}
+			else
+			{
+				g = new Riserva(n, c, h, squadra);
+				System.out.println("DEBUG: giocatore creato = "+g);
+				squadra.add(ris);
+			}
+			//System.out.println("DEBUG: squadra= "+squadra.getSquadra());
+			/*for(Squadra x : squadre) //controlla
+			{
+				if(!x.equals(squadra))
+				{
+					controllo=false;
+				}
+				else
+					controllo=true;
+				if(controllo=false)
+					squadre.add(squadra);
+			}*/
+			
+			t.addSquadra(squadra);
+
+			System.out.println();
+
+			if(!s.hasNext())
+				fine=true;
+			else
+				g=s.next();
+		}//END while
+
+		t.sortSquadre(); 	//Stampo le squadre
+		for (Squadra s : t) {
+			System.out.println(s + ":");
+			s.sort();
+			for (Giocatore g : s) {
+			    System.out.println(g);
+			}
+		}
+	
+		System.out.println("GIOCATORI: ") //Stampo i giocatori
+		for (Squadra s : t)
+		{
+			for (GIOCATORE g : s)
+				System.out.println(g);
+		}
+
+		System.out.println("TITOLARI: "); //Stampo i titolari
+		for (Squadra s : t) 
+		{
+			for (Giocatore g : s) 
+			{
+			    if (g instanceof Titolare)
+				System.out.println(g);
+			}
+		}
+	
+		System.out.println("RISERVE: "); //Stampo le riserve
+		for (Squadra s : t) 
+		{
+			for (Giocatore g : s) 
+			{
+			    if (g instanceof Riserva)
+				System.out.println(g);
+			}
+		}
+		
+	}//END main
+		
+	
+}//END class
