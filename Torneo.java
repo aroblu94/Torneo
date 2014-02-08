@@ -70,20 +70,27 @@ public class Torneo
 		}//END while
 
 		t.sortSquadre(); 	//Stampo le squadre
-		for (Squadra x : t) {
-			System.out.println(x + ":");
+		for (Squadra x : t) 
+		{
+			System.out.println(x.getNomeSquadra() + ":");
 			x.sort();
-			for (Giocatore y : x) {
+			for (Giocatore y : x) 
+			{
 			    System.out.println(y);
 			}
+			System.out.println();
 		}
 	
+		System.out.println();
+
 		System.out.println("GIOCATORI: "); //Stampo i giocatori
 		for (Squadra x : t)
 		{
 			for (Giocatore y : x)
 				System.out.println(y);
 		}
+
+		System.out.println();		
 
 		System.out.println("TITOLARI: "); //Stampo i titolari
 		for (Squadra x : t) 
@@ -94,6 +101,8 @@ public class Torneo
 				System.out.println(y);
 			}
 		}
+
+		System.out.println();
 	
 		System.out.println("RISERVE: "); //Stampo le riserve
 		for (Squadra x : t) 

@@ -68,13 +68,13 @@ public class Squadra  implements Iterable<Giocatore>, Comparable<Squadra>
 
 	public String toString()
 	{
-		String s = "SQUADRA " + nomeSquadra.toUpperCase() + ":" + "\n"; 
-		s = s + squadra;
-		return s;		
+		return nomeSquadra;		
 	}
 
 	public String getNomeSquadra() // solito metodo Get
 	{
-		return nomeSquadra;
+		return ("SQUADRA " + nomeSquadra.toUpperCase());
+		//String s = "SQUADRA " + nomeSquadra.toUpperCase() + ":" + "\n"; 
+		//s = s + squadra;
 	}
 }
