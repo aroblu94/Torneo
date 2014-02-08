@@ -1,0 +1,14 @@
+Carlo_Alberto,Ferrari,1.75,falchi,R
+Giovanni,Milanesi,1.72,condor,T
+Guido,Abate,1.72,condor,R
+Mario,Rossi,1.96,lupi,T
+Giuseppe_Mario,Delle_Querce,1.83,condor,T
+Roberto,Di_Verona,1.92,falchi,T
+Alberto,Ferraroni,1.75,lupi,R
+Luca,Vincesempre,1.92,aquile,T
+Paolo,Verdi,1.75,aquile,T
+Federico,Orsini,1.75,aquile,R
+Franco,Brambilla,1.98,lupi,T
+Paolo,Falchi,1.82,falchi,T
+Alberto,Bianchi,1.75,aquile,T
+Antonio_Mario,Ferrarini,1.75,lupi,R
