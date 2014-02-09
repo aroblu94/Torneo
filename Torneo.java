@@ -18,6 +18,7 @@ public class Torneo
 		Squadra squadra=null;
 		boolean fine=false;
 		boolean controllo;
+		boolean primoCiclo=true;
 		//Vector<Squadra> squadre = new Vector<Squadra>();
 		while(!fine) //N.B. con un semplice do while o for "mangia" l'ultima riga del file di testo, con questo rude metodo no
 		{
@@ -33,35 +34,48 @@ public class Torneo
 			System.out.println("DEBUG: squadra = "+sq);
 			ruolo=tokenizer.next();
 			System.out.println("DEBUG: ruolo = "+ruolo);
-			squadra = new Squadra(sq); //crea Squadra
+
+			if(primoCiclo = true)
+			{
+				squadra = new Squadra(sq);
+				t.addSquadra(squadra);
+			}
+			else //fa questo dal secondo giocatore in poi 
+			{
+				for(Squadra x : t) //controlla che la squadra non esista gia'
+				{
+					if(!x.toString().equals(sq))
+					{
+						controllo = false;
+					}
+					else
+					{
+						controllo = true;
+						break;
+					}
+				}
+				if(controllo = false)
+				{
+					squadra = new Squadra(sq);
+					t.addSquadra(squadra);
+				}
+			}
 			if (ruolo.equals("T")) //crea Titolare o Riserva
 			{
 				player = new Titolare(n, c, h, squadra);
 				System.out.println("DEBUG: giocatore creato = "+player);
-				squadra.add(player);
 			}
 			else
 			{
 				player = new Riserva(n, c, h, squadra);
 				System.out.println("DEBUG: giocatore creato = "+player);
-				squadra.add(player);
 			}
+			squadra.add(player);
 			//System.out.println("DEBUG: squadra= "+squadra.getSquadra());
-			/*for(Squadra x : squadre) //controlla
-			{
-				if(!x.equals(squadra))
-				{
-					controllo=false;
-				}
-				else
-					controllo=true;
-				if(controllo=false)
-					squadre.add(squadra);
-			}*/
-			
-			t.addSquadra(squadra);
 
 			System.out.println();
+			
+			primoCiclo = false;
 
 			if(!s.hasNext())
 				fine=true;
@@ -69,11 +83,13 @@ public class Torneo
 				g=s.next();
 		}//END while
 
-		t.sortSquadre(); 	//Stampo le squadre
+		//ORA STAMPO TUTTO
+		//Stampo le squadre...
+		t.sortSquadre(); 	
 		for (Squadra x : t) 
 		{
 			System.out.println(x.getNomeSquadra() + ":");
-			x.sort();
+			//x.sort();
 			for (Giocatore y : x) 
 			{
 			    System.out.println(y);
@@ -83,7 +99,8 @@ public class Torneo
 	
 		System.out.println();
 
-		System.out.println("GIOCATORI: "); //Stampo i giocatori
+		//Stampo i giocatori
+		System.out.println("GIOCATORI: "); 
 		for (Squadra x : t)
 		{
 			for (Giocatore y : x)
@@ -92,7 +109,8 @@ public class Torneo
 
 		System.out.println();		
 
-		System.out.println("TITOLARI: "); //Stampo i titolari
+		//Stampo i titolari...
+		System.out.println("TITOLARI: "); 
 		for (Squadra x : t) 
 		{
 			for (Giocatore y : x) 
@@ -104,7 +122,8 @@ public class Torneo
 
 		System.out.println();
 	
-		System.out.println("RISERVE: "); //Stampo le riserve
+		//Stampo le riserve...
+		System.out.println("RISERVE: "); 
 		for (Squadra x : t) 
 		{
 			for (Giocatore y : x) 
@@ -113,6 +132,10 @@ public class Torneo
 				System.out.println(y);
 			}
 		}
+		
+		System.out.println();
+
+		System.out.println("DEBUG: grandezza vettore Torneo = " + t.size());
 		
 	}//END main
 		

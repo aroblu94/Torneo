@@ -11,6 +11,6 @@ public class Titolare extends Giocatore
 	//METODI
 	public String toString()
 	{
-		return (super.toString()+", T");
+		return (super.toString()+" titolare");
 	}
 }

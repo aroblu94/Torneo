@@ -11,6 +11,6 @@ public class Riserva extends Giocatore
 	//METODI
 	public String toString()
 	{
-		return (super.toString()+", R");
+		return (super.toString()+" riserva");
 	}
 }

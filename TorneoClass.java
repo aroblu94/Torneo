@@ -13,5 +13,11 @@ public class TorneoClass extends Vector<Squadra>
 	{
         Collections.sort(this);
     }
+		
+	//Solo per debug...
+	public int sizeTorneo()
+	{
+		return this.size();
+	}
 
 }
