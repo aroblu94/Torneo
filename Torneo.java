@@ -9,16 +9,15 @@ public class Torneo
 		File f = new File("giocatori.txt"); // Leggo da file
 		Scanner s = new Scanner(f);
 		String g = s.next();
-		String n="";
-		String c="";
-		String sq="";
-		String ruolo="";
-		double h=0;
+		String n = "";
+		String c = "";
+		String sq = "";
+		String ruolo = "";
+		double h = 0;
 		Giocatore player = null;
-		Squadra squadra=null;
-		boolean fine=false;
-		boolean controllo;
-		boolean primoCiclo=true;
+		Squadra squadra = null;
+		boolean fine = false;
+		boolean primoCiclo = true;
 		while(!fine) //N.B. con un semplice do while o for "mangia" l'ultima riga del file di testo, con questo rude metodo no
 		{
 			Scanner tokenizer = new Scanner(g);
@@ -34,31 +33,20 @@ public class Torneo
 			ruolo=tokenizer.next();
 			System.out.println("DEBUG: ruolo = "+ruolo);
 
-			if(primoCiclo = true)
+			squadra = new Squadra(sq);
+			t.add(squadra);
+
+			if(primoCiclo = false) //fa questo dal secondo giocatore in poi 
 			{
 				squadra = new Squadra(sq);
 				t.add(squadra);
-			}
-			else //fa questo dal secondo giocatore in poi 
-			{
 				for(Squadra x : t) //controlla che la squadra non esista gia'
 				{
-					if(!x.toString().equals(sq))
-					{
-						controllo = false;
-					}
-					else
-					{
-						controllo = true;
-						break;
-					}
-				}
-				if(controllo = false)
-				{
-					squadra = new Squadra(sq);
-					t.add(squadra);
+					if(x.equals(squadra))
+						t.remove(squadra);
 				}
 			}
+
 			if (ruolo.equals("T")) //crea Titolare o Riserva
 			{
 				player = new Titolare(n, c, h, squadra);
@@ -69,16 +57,16 @@ public class Torneo
 				player = new Riserva(n, c, h, squadra);
 				System.out.println("DEBUG: giocatore creato = "+player);
 			}
-			squadra.add(player);
+			squadra.add(player); //aggiunge il giocatore appena creato alla squadra
 
 			System.out.println();
 			
 			primoCiclo = false;
 
 			if(!s.hasNext())
-				fine=true;
+				fine = true;
 			else
-				g=s.next();
+				g = s.next();
 		}//END while
 
 		//ORA STAMPO TUTTO

@@ -66,6 +66,11 @@ public class Squadra  implements Iterable<Giocatore>, Comparable<Squadra>
 		return nomeSquadra;		
 	}
 
+	public boolean equals(Squadra s)
+	{
+		return this.toString().equals(s.toString());
+	}
+
 	public String getNomeSquadra() // solito metodo Get
 	{
 		return ("SQUADRA " + nomeSquadra.toUpperCase());
