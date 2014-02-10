@@ -6,6 +6,7 @@ public class Torneo
 	public static void main(String[] args) throws Exception
 	{
 		Vector<Squadra> t = new Vector<Squadra>();
+		//TorneoClass t = new TorneoClass();
 		File f = new File("giocatori.txt"); // Leggo da file
 		Scanner s = new Scanner(f);
 		String g = s.next();
@@ -19,6 +20,7 @@ public class Torneo
 		boolean fine=false;
 		boolean controllo;
 		boolean primoCiclo=true;
+		//Vector<Squadra> squadre = new Vector<Squadra>();
 		while(!fine) //N.B. con un semplice do while o for "mangia" l'ultima riga del file di testo, con questo rude metodo no
 		{
 			Scanner tokenizer = new Scanner(g);
@@ -70,6 +72,7 @@ public class Torneo
 				System.out.println("DEBUG: giocatore creato = "+player);
 			}
 			squadra.add(player);
+			//System.out.println("DEBUG: squadra= "+squadra.getSquadra());
 
 			System.out.println();
 			
@@ -82,7 +85,8 @@ public class Torneo
 		}//END while
 
 		//ORA STAMPO TUTTO
-		//Stampo le squadre...	
+		//Stampo le squadre...
+		//t.sortSquadre(); 	
 		for (Squadra x : t) 
 		{
 			System.out.println(x.getNomeSquadra() + ":");

@@ -13,6 +13,7 @@ public abstract class Giocatore implements Comparable<Giocatore>
 		cognome = c;
 		altezza = h;
 		squadra = s;
+		//squadra.add(this);
 	}
 
 	//METODI

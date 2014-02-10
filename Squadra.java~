@@ -20,6 +20,11 @@ public class Squadra  implements Iterable<Giocatore>, Comparable<Squadra>
 		squadra.add(g);
 	}
 
+	/*public Iterator<Giocatore> iterator()
+	{
+		return squadra.iterator();
+	}*/
+
 	public Iterator<Giocatore> iterator() 	// <--- thanks to giuscri https://github.com/giuscri
 	{
     	Iterator<Giocatore> it = new Iterator<Giocatore>() 
