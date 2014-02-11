@@ -1,46 +1,38 @@
 import java.util.*;
 import java.io.*;
 
-public class Squadra  implements Iterable<Giocatore>, Comparable<Squadra>
-{
+public class Squadra  implements Iterable<Giocatore>, Comparable<Squadra> {
 	//CAMPI
 	private String nomeSquadra;
 	private Vector<Giocatore> squadra; //Set permetterebbe di non avere i doppioni nella lista
 
 	//COSTRUTTORE
-	public Squadra(String ns)
-	{
+	public Squadra(String ns) {
 		nomeSquadra = ns;
 		squadra = new Vector<Giocatore>();
 	}
 
 	//METODI
-	public void add(Giocatore g)
-	{
+	public void add(Giocatore g) {
 		squadra.add(g);
 	}
 
-	public Iterator<Giocatore> iterator() 	// <--- thanks to giuscri https://github.com/giuscri
-	{
-    	Iterator<Giocatore> it = new Iterator<Giocatore>() 
-		{
+	public Iterator<Giocatore> iterator() {	// <--- thanks to giuscri https://github.com/giuscri
+    	Iterator<Giocatore> it = new Iterator<Giocatore>() {
 	    	private int currentIndex = 0;
 	    
 	    	@Override
-	    	public boolean hasNext() 
-			{
+	    	public boolean hasNext() {
 	        	return (currentIndex < squadra.size() && !squadra.isEmpty());
 	    	}
 	    
 	    	@Override
-	    	public Giocatore next() 
-			{
+	    	public Giocatore next() {
 	        	return squadra.get(currentIndex++);
 	    	}
 	    
 	    	@Override
-			public void remove() 
-			{
+			public void remove() {
 			    squadra.remove(currentIndex -1);
 			}
 	
@@ -51,19 +43,16 @@ public class Squadra  implements Iterable<Giocatore>, Comparable<Squadra>
     }
 	
 
-	public void sort()
-	{
+	public void sort() {
 		Collections.sort(squadra);
 	}
 
-	public int compareTo(Squadra s)
-	{
-		return this.getNomeSquadra().compareTo(s.getNomeSquadra());
+	public int compareTo(Squadra s) {
+		return this.toString().compareTo(s.toString());
 	}
 
-	public String toString()
-	{
-		return "SQUADRA " + nomeSquadra;		
+	public String toString() {
+		return nomeSquadra;		
 	}
 
         @Override
@@ -72,16 +61,16 @@ public class Squadra  implements Iterable<Giocatore>, Comparable<Squadra>
 
             if (o instanceof Squadra) {
                 Squadra s = (Squadra)o;
-                out = this.getNomeSquadra().equals(s.getNomeSquadra());
-            } else {
+                out = this.toString().equals(s.toString());
+            } 
+			else {
                 out = false;
             }
 
             return out;
         }
 
-	public String getNomeSquadra() // solito metodo Get
-	{
-                return nomeSquadra.toLowerCase();
+	public String getNomeSquadra() { // solito metodo Get
+                return "SQUADRA " + nomeSquadra.toUpperCase() + ": ";
 	}
 }
