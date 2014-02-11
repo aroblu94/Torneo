@@ -90,10 +90,11 @@ public class Torneo {
 
 
 		//ORA STAMPO TUTTO
+		Collections.sort(t); // Ordino le squadrein ordine alfabetico
 		//Stampo le squadre...	
 		for (Squadra x : t) {
 			System.out.println(x.getNomeSquadra());
-			x.sort();
+			x.sort();	//---> SORT NON ORDINA A SECONDA DELL'ALTEZZA, MA DIRETTAMENTE IN ORDINE ALFABETICO!!! 
 			for (Giocatore y : x) {
 			    System.out.println(y.senzaSquadra());
 			}
