@@ -3,6 +3,9 @@ import java.io.*;
 
 public class Torneo 
 {
+
+        private static boolean debug = false;
+
 	public static void main(String[] args) throws Exception
 	{
 		Vector<Squadra> t = new Vector<Squadra>();
@@ -16,36 +19,56 @@ public class Torneo
 		double h = 0;
 		Giocatore player = null;
 		Squadra squadra = null;
-		boolean fine = false;
-		boolean primoCiclo = true;
-		while(!fine) //N.B. con un semplice do while o for "mangia" l'ultima riga del file di testo, con questo rude metodo no
+
+                Scanner line = new Scanner(f);
+
+                while (line.hasNextLine())
 		{
-			Scanner tokenizer = new Scanner(g);
+
+			Scanner tokenizer = new Scanner(line.nextLine());
 			tokenizer.useDelimiter(",");
-			n=tokenizer.next();
-			System.out.println("DEBUG: nome = "+n);
-			c=tokenizer.next();
-			System.out.println("DEBUG: cognome = "+c);
-			h=Double.parseDouble(tokenizer.next());
-			System.out.println("DEBUG: altezza = "+h);
-			sq=tokenizer.next();
-			System.out.println("DEBUG: squadra = "+sq);
-			ruolo=tokenizer.next();
-			System.out.println("DEBUG: ruolo = "+ruolo);
+
+                        /*
+                         * Prova a parsare la linea letta ...
+                         */
+                        try {
+      			    n=tokenizer.next();
+			    c=tokenizer.next();
+			    h=Double.parseDouble(tokenizer.next());
+			    sq=tokenizer.next();
+			    ruolo=tokenizer.next();
+                        }
+
+                        /*
+                         * NoSuchElementEx | IllegalStateEx
+                         * sollevate. Stampa un log ...
+                         */
+                        catch (RuntimeException e) {
+                           System.err.println(e.getMessage());
+                        }
+
+                        /*
+                         * Stampa tutto quello che sei
+                         * riuscito a parsare ...
+                         */
+                        finally {
+                            if (debug) {
+                            StringBuilder sb = new StringBuilder();
+                            sb.append("DEBUG: nome = "+n+"\n");
+                            sb.append("DEBUG: altezza = "+h+"\n");
+                            sb.append("DEBUG: squadra = "+sq+"\n");
+                            sb.append("DEBUG: ruolo  = "+ruolo);
+                            System.out.println(sb);
+                            }
+                            // ...
+                        }
 
 			squadra = new Squadra(sq);
-			t.add(squadra);
 
-			if(primoCiclo = false) //fa questo dal secondo giocatore in poi 
-			{
-				squadra = new Squadra(sq);
-				t.add(squadra);
-				for(Squadra x : t) //controlla che la squadra non esista gia'
-				{
-					if(x.equals(squadra))
-						t.remove(squadra);
-				}
-			}
+                        if (!t.contains(squadra)) {
+                            t.add(squadra);
+                            System.out.println("Adding "+squadra);
+                        }
 
 			if (ruolo.equals("T")) //crea Titolare o Riserva
 			{
@@ -61,12 +84,6 @@ public class Torneo
 
 			System.out.println();
 			
-			primoCiclo = false;
-
-			if(!s.hasNext())
-				fine = true;
-			else
-				g = s.next();
 		}//END while
 
 		//ORA STAMPO TUTTO
