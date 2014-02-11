@@ -58,23 +58,30 @@ public class Squadra  implements Iterable<Giocatore>, Comparable<Squadra>
 
 	public int compareTo(Squadra s)
 	{
-		return this.nomeSquadra.compareTo(s.getNomeSquadra());
+		return this.getNomeSquadra().compareTo(s.getNomeSquadra());
 	}
 
 	public String toString()
 	{
-		return nomeSquadra;		
+		return "SQUADRA " + nomeSquadra;		
 	}
 
-	public boolean equals(Squadra s)
-	{
-		return this.toString().equals(s.toString());
-	}
+        @Override
+        public boolean equals(Object o) {
+            boolean out = false;
+
+            if (o instanceof Squadra) {
+                Squadra s = (Squadra)o;
+                out = this.getNomeSquadra().equals(s.getNomeSquadra());
+            } else {
+                out = false;
+            }
+
+            return out;
+        }
 
 	public String getNomeSquadra() // solito metodo Get
 	{
-		return ("SQUADRA " + nomeSquadra.toUpperCase());
-		//String s = "SQUADRA " + nomeSquadra.toUpperCase() + ":" + "\n"; 
-		//s = s + squadra;
+                return nomeSquadra.toLowerCase();
 	}
 }
