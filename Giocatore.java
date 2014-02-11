@@ -41,7 +41,7 @@ public abstract class Giocatore implements Comparable<Giocatore>
 	//toString
 	public String toString()
 	{
-		return (nome+" "+cognome+" "+altezza+"m "+squadra);
+		return (nome+" "+cognome+" "+altezza+" "+squadra);
 	}
 
 
