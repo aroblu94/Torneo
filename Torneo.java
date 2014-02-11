@@ -67,23 +67,23 @@ public class Torneo
 
                         if (!t.contains(squadra)) {
                             t.add(squadra);
-                            System.out.println("Adding "+squadra);
+                            if(debug) {System.out.println("Adding "+squadra);}
                         }
 
 			if (ruolo.equals("T")) //crea Titolare o Riserva
 			{
 				player = new Titolare(n, c, h, squadra);
-				System.out.println("DEBUG: giocatore creato = "+player);
+				if(debug) {System.out.println("DEBUG: giocatore creato = "+player);}
 			}
 			else
 			{
 				player = new Riserva(n, c, h, squadra);
-				System.out.println("DEBUG: giocatore creato = "+player);
+				if(debug) {System.out.println("DEBUG: giocatore creato = "+player);}
 			}
-			squadra.add(player); //aggiunge il giocatore appena creato alla squadra
+			t.get(t.indexOf(squadra)).add(player); //aggiunge il giocatore appena creato alla squadra
 
-			System.out.println();
-			
+		
+	
 		}//END while
 
 		//ORA STAMPO TUTTO
@@ -137,7 +137,7 @@ public class Torneo
 		
 		System.out.println();
 
-		System.out.println("DEBUG: grandezza vettore Torneo = " + t.size());
+		if(debug) {System.out.println("DEBUG: grandezza vettore Torneo = " + t.size());}
 		
 	}//END main
 		
